@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es3",
+        "noImplicitAny": false,
+        "rootDir": "./src/",
+        "sourceMap": false,
+        "jsx": "react"
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "compileOnSave": false
+}
