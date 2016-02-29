@@ -1,6 +1,6 @@
 import * as React from "react";
 import {PersonView} from "./person-view";
-import {Person} from "./models/person";
+import {Person} from "./person";
 
 interface PersonListProps {
   people: Person[];

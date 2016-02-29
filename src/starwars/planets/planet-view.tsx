@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Planet} from "./models/planet";
+import {Planet} from "./planet";
 
 export function PlanetView(props: Planet) {
   return (

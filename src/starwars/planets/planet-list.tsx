@@ -1,6 +1,6 @@
 import * as React from "react";
 import {PlanetView} from "./planet-view";
-import {Planet} from "./models/planet";
+import {Planet} from "./planet";
 
 interface PlanetListProps {
   planets: Planet[];

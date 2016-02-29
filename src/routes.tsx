@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {People} from "./starwars/people";
-import {Planets} from "./starwars/planets";
+import {People} from "./starwars/people/people";
+import {Planets} from "./starwars/planets/planets";
 
 export function renderRoutes() {
   for (let route of routes) {

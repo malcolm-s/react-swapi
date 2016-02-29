@@ -1,19 +1,20 @@
 import * as React from "react";
-import {Planet} from "./models/planet";
-import {SwapiListResponse} from "./models/swapi-list-response";
-import {PlanetList} from "./planet-list";
-import {UrlPager} from "./url-pager";
+import {PersonView} from "./person-view";
+import {Person} from "./person";
+import {SwapiListResponse} from "../models/swapi-list-response";
+import {PersonList} from "./person-list";
+import {UrlPager} from "../url-pager";
 
 declare function fetch(url: string): any;
 
-interface PlanetsState {
+interface PeopleState {
   loading: boolean;
-  Planets?: Planet[];
+  people?: Person[];
   previousUrl?: string;
   nextUrl?: string;
 }
 
-export class Planets extends React.Component<{}, PlanetsState> {
+export class People extends React.Component<{}, PeopleState> {
   constructor(props) {
     super(props);
 
@@ -23,19 +24,19 @@ export class Planets extends React.Component<{}, PlanetsState> {
   }
 
   componentWillMount() {
-    this.fetchPlanets("http://swapi.co/api/planets");
+    this.fetchPeople("http://swapi.co/api/people");
   }
 
-  fetchPlanets(url) {
+  fetchPeople(url) {
     this.setState({ loading: true });
 
     return fetch(url)
       .then(res => res.json())
-      .then((res: SwapiListResponse<Planet>) => {
+      .then((res: SwapiListResponse<Person>) => {
         console.log(res)
         this.setState({
           loading: false,
-          Planets: res.results,
+          people: res.results,
           previousUrl: res.previous,
           nextUrl: res.next
         });
@@ -46,18 +47,18 @@ export class Planets extends React.Component<{}, PlanetsState> {
     if (this.state.loading) {
       return (
         <div>
-          <h2>Planets</h2>
+          <h2>People</h2>
           <div>Loading...</div>
         </div>
       );
     } else {
       return (
         <div>
-          <h2>Planets</h2>
+          <h2>People</h2>
           <UrlPager
-            onPreviousClick={() => this.fetchPlanets(this.state.previousUrl)}
-            onNextClick={() => this.fetchPlanets(this.state.nextUrl)} />
-          <PlanetList planets={this.state.Planets} />
+            onPreviousClick={() => this.fetchPeople(this.state.previousUrl)}
+            onNextClick={() => this.fetchPeople(this.state.nextUrl)} />
+          <PersonList people={this.state.people} />
         </div>
       );
     }
