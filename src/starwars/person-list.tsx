@@ -4,7 +4,6 @@ import {Person} from "./models/person";
 
 interface PersonListProps {
   people: Person[];
-  onPreviousClick?: React.EventHandler<React.MouseEvent>;
 }
 
 export function PersonList(props: PersonListProps) {

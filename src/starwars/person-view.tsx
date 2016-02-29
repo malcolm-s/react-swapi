@@ -5,7 +5,7 @@ export function PersonView(props: Person) {
   return (
     <div>
       <h3>{props.name}</h3>
-      <p>{props.height}m</p>
+      <p>{props.height ? `${props.height}m` : ""}</p>
     </div>
   )
 }

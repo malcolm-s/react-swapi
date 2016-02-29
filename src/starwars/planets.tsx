@@ -1,19 +1,18 @@
 import * as React from "react";
-import {PersonView} from "./person-view";
-import {Person} from "./models/person";
+import {Planet} from "./models/planet";
 import {SwapiListResponse} from "./models/swapi-list-response";
-import {PersonList} from "./person-list";
+import {PlanetList} from "./planet-list";
 
 declare function fetch(url: string): any;
 
-interface PeopleState {
+interface PlanetsState {
   loading: boolean;
-  people?: Person[];
+  Planets?: Planet[];
   previousUrl?: string;
   nextUrl?: string;
 }
 
-export class People extends React.Component<{}, PeopleState> {
+export class Planets extends React.Component<{}, PlanetsState> {
   constructor(props) {
     super(props);
 
@@ -23,19 +22,19 @@ export class People extends React.Component<{}, PeopleState> {
   }
 
   componentWillMount() {
-    this.fetchPeople("http://swapi.co/api/people");
+    this.fetchPlanets("http://swapi.co/api/planets");
   }
 
-  fetchPeople(url) {
+  fetchPlanets(url) {
     this.setState({ loading: true });
 
     return fetch(url)
       .then(res => res.json())
-      .then((res: SwapiListResponse<Person>) => {
+      .then((res: SwapiListResponse<Planet>) => {
         console.log(res)
         this.setState({
           loading: false,
-          people: res.results,
+          Planets: res.results,
           previousUrl: res.previous,
           nextUrl: res.next
         });
@@ -49,10 +48,10 @@ export class People extends React.Component<{}, PeopleState> {
       return (
         <div>
           <div>
-            {this.state.previousUrl ? <button onClick={e => this.fetchPeople(this.state.previousUrl)}>previous</button> : null}
-            {this.state.nextUrl ? <button onClick={e => this.fetchPeople(this.state.nextUrl)}>next</button> : null}
+            {this.state.previousUrl ? <button onClick={e => this.fetchPlanets(this.state.previousUrl)}>previous</button> : null}
+            {this.state.nextUrl ? <button onClick={e => this.fetchPlanets(this.state.nextUrl)}>next</button> : null}
           </div>
-          <PersonList people={this.state.people} />
+          <PlanetList planets={this.state.Planets} />
         </div>
       );
     }
