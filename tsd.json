@@ -10,6 +10,9 @@
     },
     "react/react-dom.d.ts": {
       "commit": "ba257a9b91bc0de1bdd9091b6723194c905a902a"
+    },
+    "whatwg-fetch/whatwg-fetch.d.ts": {
+      "commit": "4d2d0653003a4d1df4d7c68054cce4f4ace58bdf"
     }
   }
 }

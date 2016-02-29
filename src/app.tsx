@@ -4,13 +4,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {SubComponent} from "./sub-component";
 import {TableGenerator} from "./table-generator";
+import {PersonContainer} from "./starwars/person-container";
 
 function App() {
   return (
     <div>
-      <h1>Stateless app component</h1>
-      <SubComponent title="hey!" />
-      <TableGenerator rows={10} columns={10} />
+      <h1>Star Wars</h1>
+      <PersonContainer />
     </div>
   );
 }
