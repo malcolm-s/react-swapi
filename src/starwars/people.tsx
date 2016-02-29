@@ -3,6 +3,7 @@ import {PersonView} from "./person-view";
 import {Person} from "./models/person";
 import {SwapiListResponse} from "./models/swapi-list-response";
 import {PersonList} from "./person-list";
+import {UrlPager} from "./url-pager";
 
 declare function fetch(url: string): any;
 
@@ -44,14 +45,19 @@ export class People extends React.Component<{}, PeopleState> {
 
   render() {
     if (this.state.loading) {
-      return <div>Loading...</div>
+      return (
+        <div>
+          <h2>People</h2>
+          <div>Loading...</div>
+        </div>
+      );
     } else {
       return (
         <div>
-          <div>
-            {this.state.previousUrl ? <button onClick={e => this.fetchPeople(this.state.previousUrl)}>previous</button> : null}
-            {this.state.nextUrl ? <button onClick={e => this.fetchPeople(this.state.nextUrl)}>next</button> : null}
-          </div>
+          <h2>People</h2>
+          <UrlPager
+            onPreviousClick={() => this.fetchPeople(this.state.previousUrl)}
+            onNextClick={() => this.fetchPeople(this.state.nextUrl)} />
           <PersonList people={this.state.people} />
         </div>
       );

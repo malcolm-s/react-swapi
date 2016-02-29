@@ -2,6 +2,7 @@ import * as React from "react";
 import {Planet} from "./models/planet";
 import {SwapiListResponse} from "./models/swapi-list-response";
 import {PlanetList} from "./planet-list";
+import {UrlPager} from "./url-pager";
 
 declare function fetch(url: string): any;
 
@@ -43,14 +44,19 @@ export class Planets extends React.Component<{}, PlanetsState> {
 
   render() {
     if (this.state.loading) {
-      return <div>Loading...</div>
+      return (
+        <div>
+          <h2>Planets</h2>
+          <div>Loading...</div>
+        </div>
+      );
     } else {
       return (
         <div>
-          <div>
-            {this.state.previousUrl ? <button onClick={e => this.fetchPlanets(this.state.previousUrl)}>previous</button> : null}
-            {this.state.nextUrl ? <button onClick={e => this.fetchPlanets(this.state.nextUrl)}>next</button> : null}
-          </div>
+          <h2>Planets</h2>
+          <UrlPager
+            onPreviousClick={() => this.fetchPlanets(this.state.previousUrl)}
+            onNextClick={() => this.fetchPlanets(this.state.nextUrl)} />
           <PlanetList planets={this.state.Planets} />
         </div>
       );
