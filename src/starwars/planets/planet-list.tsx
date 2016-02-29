@@ -1,6 +1,7 @@
 import * as React from "react";
 import {PlanetView} from "./planet-view";
 import {Planet} from "./planet";
+import {PropertyViewer} from "../property-viewer";
 
 interface PlanetListProps {
   planets: Planet[];
@@ -9,7 +10,7 @@ interface PlanetListProps {
 export function PlanetList(props: PlanetListProps) {
   return (
     <div>
-      {props.planets.map((Planet, i) => <PlanetView key={i} {...Planet} />)}
+      {props.planets.map((planet, i) => <PropertyViewer key={i} {...planet} />)}
     </div>
   );
 }
