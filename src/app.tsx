@@ -2,26 +2,14 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {People} from "./starwars/people";
-import {Planets} from "./starwars/planets";
-
-function renderRoutes() {
-  if (window.location.hash.indexOf("people") > -1) {
-    return <People />
-  }
-  if (window.location.hash.indexOf("planets") > -1) {
-      return <Planets />
-  }
-}
+import {renderRoutes} from "./routes";
+import {AppNavigation} from "./app-navigation";
 
 function App() {
   return (
     <div>
       <h1>Star Wars</h1>
-      <div>
-        <a href="#people">People</a>
-        <a href="#planets">Planets</a>
-      </div>
+      <AppNavigation />
       {renderRoutes()}
     </div>
   );
