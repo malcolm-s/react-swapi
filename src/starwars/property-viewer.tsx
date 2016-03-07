@@ -5,7 +5,7 @@ export function PropertyViewer(props) {
     <div>
       <h3>{props["name"]}</h3>
       <ul>
-        {Object.keys(props).map(prop => <li><PropertyValueViewer name={prop} value={props[prop]} /></li>)}
+        {Object.keys(props).map((prop, i) => <li key={i}><PropertyValueViewer name={prop} value={props[prop]} /></li>)}
       </ul>
     </div>
   )
@@ -28,7 +28,7 @@ function ArrayPropertyViewer(props) {
     <div>
       <div>{props.name}</div>
       <ul>
-        {props.value.map(value => <li>{value}</li>)}
+        {props.value.map((value, i) => <li key={i}>{value}</li>)}
       </ul>
     </div>
   );
