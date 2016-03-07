@@ -1,11 +1,15 @@
 import * as React from "react";
-import {routes} from "./routes";
+import {Route} from "./routes";
 
-export function AppNavigation() {
+interface AppNavigationProps {
+  routes: Route[];
+}
+
+export function AppNavigation(props: AppNavigationProps) {
   return (
     <div>
       <ul>
-        {routes.map(route =>
+        {props.routes.map(route =>
           <li key={route.url}>
             <a href={`#${route.url}`}>{route.url}</a>
           </li>)}
