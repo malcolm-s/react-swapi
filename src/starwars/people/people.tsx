@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Person} from "./person";
-import {SwapiListResponse} from "../models/swapi-list-response";
 import {PersonList} from "./person-list";
 import {UrlPager} from "../url-pager";
 import {LoadingHeader} from "../loading-header";
+import {fetchPeople} from "../swapi-service";
 
 declare function fetch(url: string): any;
 
@@ -30,9 +30,8 @@ export class People extends React.Component<{}, PeopleState> {
   fetchPeople(url) {
     this.setState({ loading: true });
 
-    return fetch(url)
-      .then(res => res.json())
-      .then((res: SwapiListResponse<Person>) => {
+    return fetchPeople()
+      .then(res => {
         console.log(res)
         this.setState({
           loading: false,
