@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {People} from "./starwars/people/people";
-import {Planets} from "./starwars/planets/planets";
+import {People} from "./starwars/people";
+import {Planets} from "./starwars/planets";
+import {Starships} from "./starwars/starships";
 
 export function renderRoutes() {
   for (let route of routes) {
@@ -24,5 +25,6 @@ export interface Route {
 
 export const routes: Route[] = [
   { url: "people", component: <People /> },
-  { url: "planets", component: <Planets /> }
+  { url: "planets", component: <Planets /> },
+  { url: "starships", component: <Starships /> }
 ];
