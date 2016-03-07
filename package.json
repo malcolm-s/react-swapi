@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "live-server",
-    "watch:ts": "tsc -w",
+    "watch": "webpack --watch -d --colors --progress",
     "build": "webpack -d"
   },
   "keywords": [],
