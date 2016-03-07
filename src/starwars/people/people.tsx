@@ -1,9 +1,9 @@
 import * as React from "react";
-import {PersonView} from "./person-view";
 import {Person} from "./person";
 import {SwapiListResponse} from "../models/swapi-list-response";
 import {PersonList} from "./person-list";
 import {UrlPager} from "../url-pager";
+import {LoadingHeader} from "../loading-header";
 
 declare function fetch(url: string): any;
 
@@ -45,12 +45,7 @@ export class People extends React.Component<{}, PeopleState> {
 
   render() {
     if (this.state.loading) {
-      return (
-        <div>
-          <h2>People</h2>
-          <div>Loading...</div>
-        </div>
-      );
+      return <LoadingHeader name="People" />
     } else {
       return (
         <div>

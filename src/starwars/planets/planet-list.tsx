@@ -1,5 +1,4 @@
 import * as React from "react";
-import {PlanetView} from "./planet-view";
 import {Planet} from "./planet";
 import {PropertyViewer} from "../property-viewer";
 

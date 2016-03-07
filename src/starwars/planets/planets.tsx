@@ -3,8 +3,8 @@ import {Planet} from "./planet";
 import {SwapiListResponse} from "../models/swapi-list-response";
 import {PlanetList} from "./planet-list";
 import {UrlPager} from "../url-pager";
-
-declare function fetch(url: string): any;
+import {LoadingHeader} from "../loading-header";
+import {fetchPlanets} from "../swapi-service";
 
 interface PlanetsState {
   loading: boolean;
@@ -28,28 +28,20 @@ export class Planets extends React.Component<{}, PlanetsState> {
 
   fetchPlanets(url) {
     this.setState({ loading: true });
-
-    return fetch(url)
-      .then(res => res.json())
-      .then((res: SwapiListResponse<Planet>) => {
-        console.log(res)
-        this.setState({
-          loading: false,
-          Planets: res.results,
-          previousUrl: res.previous,
-          nextUrl: res.next
-        });
+    return fetchPlanets().then(res => {
+      console.log(res)
+      this.setState({
+        loading: false,
+        Planets: res.results,
+        previousUrl: res.previous,
+        nextUrl: res.next
       });
+    });
   }
 
   render() {
     if (this.state.loading) {
-      return (
-        <div>
-          <h2>Planets</h2>
-          <div>Loading...</div>
-        </div>
-      );
+      return <LoadingHeader name="Planets" />;
     } else {
       return (
         <div>
