@@ -3,7 +3,7 @@ import {Person} from "./person";
 import {PersonList} from "./person-list";
 import {UrlPager} from "../url-pager";
 import {LoadingHeader} from "../loading-header";
-import {fetchPeople} from "../swapi-service";
+import {fetchPeople} from "../swapi/swapi-service";
 
 declare function fetch(url: string): any;
 
@@ -24,13 +24,13 @@ export class People extends React.Component<{}, PeopleState> {
   }
 
   componentWillMount() {
-    this.fetchPeople("http://swapi.co/api/people");
+    this.fetchPeople();
   }
 
-  fetchPeople(url) {
+  fetchPeople(url?: string) {
     this.setState({ loading: true });
 
-    return fetchPeople()
+    return fetchPeople(url)
       .then(res => {
         console.log(res)
         this.setState({
@@ -51,7 +51,9 @@ export class People extends React.Component<{}, PeopleState> {
           <h2>People</h2>
           <UrlPager
             onPreviousClick={() => this.fetchPeople(this.state.previousUrl)}
-            onNextClick={() => this.fetchPeople(this.state.nextUrl)} />
+            onNextClick={() => this.fetchPeople(this.state.nextUrl)}
+            canGoPrevious={() => !!this.state.previousUrl}
+            canGoNext={() => !!this.state.nextUrl} />
           <PersonList people={this.state.people} />
         </div>
       );

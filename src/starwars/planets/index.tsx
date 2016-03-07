@@ -1,14 +1,13 @@
 import * as React from "react";
 import {Planet} from "./planet";
-import {SwapiListResponse} from "../models/swapi-list-response";
 import {PlanetList} from "./planet-list";
 import {UrlPager} from "../url-pager";
 import {LoadingHeader} from "../loading-header";
-import {fetchPlanets} from "../swapi-service";
+import {fetchPlanets} from "../swapi/swapi-service";
 
 interface PlanetsState {
   loading: boolean;
-  Planets?: Planet[];
+  planets?: Planet[];
   previousUrl?: string;
   nextUrl?: string;
 }
@@ -23,16 +22,17 @@ export class Planets extends React.Component<{}, PlanetsState> {
   }
 
   componentWillMount() {
-    this.fetchPlanets("http://swapi.co/api/planets");
+    this.fetchPlanets();
   }
 
-  fetchPlanets(url) {
+  fetchPlanets(url?: string) {
     this.setState({ loading: true });
-    return fetchPlanets().then(res => {
+
+    return fetchPlanets(url).then(res => {
       console.log(res)
       this.setState({
         loading: false,
-        Planets: res.results,
+        planets: res.results,
         previousUrl: res.previous,
         nextUrl: res.next
       });
@@ -48,8 +48,10 @@ export class Planets extends React.Component<{}, PlanetsState> {
           <h2>Planets</h2>
           <UrlPager
             onPreviousClick={() => this.fetchPlanets(this.state.previousUrl)}
-            onNextClick={() => this.fetchPlanets(this.state.nextUrl)} />
-          <PlanetList planets={this.state.Planets} />
+            onNextClick={() => this.fetchPlanets(this.state.nextUrl)}
+            canGoPrevious={() => !!this.state.previousUrl}
+            canGoNext={() => !!this.state.nextUrl} />
+          <PlanetList planets={this.state.planets} />
         </div>
       );
     }
