@@ -6,6 +6,7 @@ import {People} from "./starwars/people";
 import {Planets} from "./starwars/planets";
 import {Starships} from "./starwars/starships";
 import {Species} from "./starwars/species";
+import {Vehicles} from "./starwars/vehicles";
 
 export function renderRoutes() {
   for (let route of routes) {
@@ -28,5 +29,6 @@ export const routes: Route[] = [
   { url: "people", component: <People /> },
   { url: "planets", component: <Planets /> },
   { url: "starships", component: <Starships /> },
-  { url: "species", component: <Species /> }
+  { url: "species", component: <Species /> },
+  { url: "vehicles", component: <Vehicles /> }
 ];
