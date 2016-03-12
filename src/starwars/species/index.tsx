@@ -52,7 +52,7 @@ export class Species extends React.Component<{}, SpeciesState> {
             canGoPrevious={() => !!this.state.previousUrl}
             canGoNext={() => !!this.state.nextUrl} />
           <div>
-            {this.state.species.map(species => <PropertyViewer {...species} /> )}
+            {this.state.species.map((species, i) => <PropertyViewer key={i} {...species} /> )}
           </div>
         </div>
       );
