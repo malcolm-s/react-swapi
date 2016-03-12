@@ -5,6 +5,7 @@ import * as ReactDOM from "react-dom";
 import {People} from "./starwars/people";
 import {Planets} from "./starwars/planets";
 import {Starships} from "./starwars/starships";
+import {Species} from "./starwars/species";
 
 export function renderRoutes() {
   for (let route of routes) {
@@ -26,5 +27,6 @@ export interface Route {
 export const routes: Route[] = [
   { url: "people", component: <People /> },
   { url: "planets", component: <Planets /> },
-  { url: "starships", component: <Starships /> }
+  { url: "starships", component: <Starships /> },
+  { url: "species", component: <Species /> }
 ];
