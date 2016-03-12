@@ -8,7 +8,7 @@ import {Starships} from "./starwars/starships";
 import {Species} from "./starwars/species";
 import {Vehicles} from "./starwars/vehicles";
 
-export function renderRoutes() {
+export function getRouteComponent() {
   for (let route of routes) {
       if (routeMatches(route)) {
           return route.component;

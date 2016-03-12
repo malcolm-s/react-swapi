@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {renderRoutes,routes} from "./routes";
+import {getRouteComponent,routes} from "./routes";
 import {AppNavigation} from "./app-navigation";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div>
       <h1>Star Wars</h1>
       <AppNavigation routes={routes} />
-      {renderRoutes()}
+      {getRouteComponent()}
     </div>
   );
 }
