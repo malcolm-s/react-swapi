@@ -7,6 +7,7 @@ import {Planets} from "./starwars/planets";
 import {Starships} from "./starwars/starships";
 import {Species} from "./starwars/species";
 import {Vehicles} from "./starwars/vehicles";
+import {Films} from "./starwars/films";
 
 export function getRouteComponent() {
   for (let route of routes) {
@@ -30,5 +31,6 @@ export const routes: Route[] = [
   { url: "planets", component: <Planets /> },
   { url: "starships", component: <Starships /> },
   { url: "species", component: <Species /> },
-  { url: "vehicles", component: <Vehicles /> }
+  { url: "vehicles", component: <Vehicles /> },
+  { url: "films", component: <Films /> }  
 ];

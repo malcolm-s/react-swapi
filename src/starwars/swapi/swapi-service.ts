@@ -4,6 +4,7 @@ import {Person} from "../people/person";
 import {Starship} from "../starships/starship";
 import {Species} from "../species/species";
 import {Vehicle} from "../vehicles/vehicle";
+import {Film} from "../films/film";
 
 declare function fetch(url: string): any;
 
@@ -29,4 +30,8 @@ export function fetchSpecies(url = "http://swapi.co/api/species") {
 
 export function fetchVehicles(url = "http://swapi.co/api/vehicles") {
   return fetchResource<Vehicle>(url);
+}
+
+export function fetchFilms(url = "http://swapi.co/api/films") {
+  return fetchResource<Film>(url);
 }
