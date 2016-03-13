@@ -2,12 +2,12 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {People} from "./starwars/people";
-import {Planets} from "./starwars/planets";
-import {Starships} from "./starwars/starships";
-import {Species} from "./starwars/species";
-import {Vehicles} from "./starwars/vehicles";
-import {Films} from "./starwars/films";
+import {PeoplePage} from "./starwars/people";
+import {PlanetsPage} from "./starwars/planets";
+import {StarshipsPage} from "./starwars/starships";
+import {SpeciesPage} from "./starwars/species";
+import {VehiclesPage} from "./starwars/vehicles";
+import {FilmsPage} from "./starwars/films";
 
 export function getRouteComponent() {
   for (let route of routes) {
@@ -27,10 +27,10 @@ export interface Route {
 }
 
 export const routes: Route[] = [
-  { url: "people", component: <People /> },
-  { url: "planets", component: <Planets /> },
-  { url: "starships", component: <Starships /> },
-  { url: "species", component: <Species /> },
-  { url: "vehicles", component: <Vehicles /> },
-  { url: "films", component: <Films /> }  
+  { url: "people", component: <PeoplePage /> },
+  { url: "planets", component: <PlanetsPage /> },
+  { url: "starships", component: <StarshipsPage /> },
+  { url: "species", component: <SpeciesPage /> },
+  { url: "vehicles", component: <VehiclesPage /> },
+  { url: "films", component: <FilmsPage /> }
 ];

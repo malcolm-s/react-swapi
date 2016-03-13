@@ -3,11 +3,7 @@ import {SwapiListResponse} from "./swapi-list-response";
 import {UrlPager} from "../url-pager";
 import {PropertyViewer} from "../property-viewer";
 import {fetchResource} from "./swapi-service";
-
-interface SwapiResource {
-  name: string;
-  listUrl: string;
-}
+import {SwapiResource} from "./swapi-resource";
 
 interface SwapiResourcePageState {
   loading: boolean;
@@ -15,9 +11,7 @@ interface SwapiResourcePageState {
   count?: number;
 }
 
-interface SwapiResourcePageProps {
-  resource: SwapiResource;
-}
+interface SwapiResourcePageProps extends SwapiResource {}
 
 export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, SwapiResourcePageState> {
   constructor(props) {
@@ -29,7 +23,7 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
   }
 
   componentWillMount() {
-    this.fetchResults(this.props.resource.listUrl);
+    this.fetchResults(this.props.listUrl);
   }
 
   fetchResults(url: string) {
@@ -82,6 +76,6 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
   }
 
   renderHeader() {
-    return <h2>{this.props.resource.name} {this.state.count ? `(${this.state.count})` : ""}</h2>;
+    return <h2>{this.props.name} {this.state.count ? `(${this.state.count})` : ""}</h2>;
   }
 }
