@@ -7,17 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "live-server",
     "watch": "webpack --watch -d --colors --progress",
-    "build": "webpack -d"
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "react": "^0.14.6",
-    "react-dom": "^0.14.6",
+    "react-dom": "^0.14.6"
+  },
+  "devDependencies": {
+    "live-server": "^0.9.2",
     "ts-loader": "^0.7.2",
-    "typescript": "^1.8.2",
-    "webpack": "^1.12.10",
-    "webpack-dev-server": "^1.14.0"
+    "webpack": "^1.12.14"
   }
 }
