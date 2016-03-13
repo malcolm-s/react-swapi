@@ -8,7 +8,7 @@ import {Film} from "../films/film";
 
 declare function fetch(url: string): any;
 
-function fetchResource<T>(url: string): PromiseLike<SwapiListResponse<T>> {
+export function fetchResource<T>(url: string): PromiseLike<SwapiListResponse<T>> {
   return fetch(url).then(res => res.json());
 }
 

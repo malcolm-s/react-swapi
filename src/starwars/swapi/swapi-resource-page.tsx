@@ -1,88 +1,87 @@
-// import * as React from "react";
-// import {SwapiListResponse} from "./swapi-list-response";
-// import {UrlPager} from "../url-pager";
-//
-// declare function fetch(url: string): any;
-//
-// interface SwapiResourcePageState<T> {
-//   loading: boolean;
-//   lastResponse?: SwapiListResponse<T>;
-// }
-//
-// interface SwapiResourcePageProps {
-//   name: string;
-// }
-//
-// export class SwapiResourcePage<T> extends React.Component<SwapiResourcePageProps, SwapiResourcePageState<T>> {
-//   constructor(props) {
-//     super(props);
-//
-//     this.state = {
-//       loading: true
-//     };
-//   }
-//
-//   componentWillMount() {
-//     this.fetchResults(`http://swapi.co/api/${this.props.name}`);
-//   }
-//
-//   fetchResults(url) {
-//     if (!url) {
-//       return;
-//     }
-//
-//     this.setState({ loading: true });
-//
-//     return fetch(url)
-//       .then(res => res.json())
-//       .then((res: SwapiListResponse<T>) => {
-//         console.log(res)
-//         this.setState({
-//           loading: false,
-//           lastResponse: res
-//         });
-//       });
-//   }
-//
-//   render() {
-//     if (this.state.loading) {
-//       return (
-//         <div>
-//           <h2>{this.props.name}</h2>
-//           <div>Loading...</div>
-//         </div>
-//       );
-//     } else {
-//       return (
-//         <div>
-//           <h2>{this.props.name}</h2>
-//           <UrlPager
-//             onPreviousClick={() => this.fetchResults(this.state.lastResponse.previous)}
-//             onNextClick={() => this.fetchResults(this.state.lastResponse.next)} />
-//           {this.renderResults()}
-//         </div>
-//       );
-//     }
-//   }
-//
-//   renderResults() {
-//     if (!this.state.lastResponse) {
-//         return;
-//     }
-//
-//     return (
-//       <div>
-//         {this.state.lastResponse.results.map(result =>
-//           (
-//             <div>
-//               <h3>{result["name"]}</h3>
-//               <ul>
-//                 {Object.keys(result).map(prop => <li>{prop}: {result[prop]}</li>)}
-//               </ul>
-//             </div>
-//           )
-//         )}
-//       </div>
-//     );
-//   }
-// }
+import * as React from "react";
+import {SwapiListResponse} from "./swapi-list-response";
+import {UrlPager} from "../url-pager";
+import {PropertyViewer} from "../property-viewer";
+import {fetchResource} from "./swapi-service";
+
+interface SwapiResource {
+  name: string;
+  listUrl: string;
+}
+
+interface SwapiResourcePageState {
+  loading: boolean;
+  lastResponse?: SwapiListResponse<{}>;
+  count?: number;
+}
+
+interface SwapiResourcePageProps {
+  resource: SwapiResource;
+}
+
+export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, SwapiResourcePageState> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true
+    };
+  }
+
+  componentWillMount() {
+    this.fetchResults(this.props.resource.listUrl);
+  }
+
+  fetchResults(url: string) {
+    if (!url) {
+      return;
+    }
+
+    this.setState({ loading: true });
+
+    return fetchResource(url)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          loading: false,
+          lastResponse: res,
+          count: res.count
+        });
+      });
+  }
+
+  render() {
+    if (this.state.loading || !this.state.lastResponse) {
+      return (
+        <div>
+          {this.renderHeader()}
+          <div>Loading...</div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {this.renderHeader()}
+          <UrlPager
+            onPreviousClick={() => this.fetchResults(this.state.lastResponse.previous)}
+            onNextClick={() => this.fetchResults(this.state.lastResponse.next)}
+            canGoPrevious={() => !!this.state.lastResponse.previous}
+            canGoNext={() => !!this.state.lastResponse.next} />
+          {this.renderResults()}
+        </div>
+      );
+    }
+  }
+
+  renderResults() {
+    return (
+      <div>
+        {this.state.lastResponse.results.map((result, i) => <PropertyViewer key={i} {...result} />)}
+      </div>
+    );
+  }
+
+  renderHeader() {
+    return <h2>{this.props.resource.name} {this.state.count ? `(${this.state.count})` : ""}</h2>;
+  }
+}
