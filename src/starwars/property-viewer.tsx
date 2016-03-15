@@ -4,9 +4,9 @@ export function PropertyViewer(props) {
   return (
     <div>
       <h3>{props["name"]}</h3>
-      <ul>
-        {Object.keys(props).map((prop, i) => <li key={i}><PropertyValueViewer name={prop} value={props[prop]} /></li>)}
-      </ul>
+      <div>
+        {Object.keys(props).map((prop, i) => <div key={i}><PropertyValueViewer name={prop} value={props[prop]} /></div>)}
+      </div>
     </div>
   )
 }
@@ -20,16 +20,21 @@ function PropertyValueViewer(props) {
 }
 
 function LiteralPropertyViewer(props) {
-  return <span>{props.name}: {props.value}</span>
+  return (
+    <div>
+      <div><b>{props.name}</b></div>
+      <div>{props.value}</div>
+    </div>
+  );
 }
 
 function ArrayPropertyViewer(props) {
   return (
     <div>
-      <div>{props.name}</div>
-      <ul>
-        {props.value.map((value, i) => <li key={i}>{value}</li>)}
-      </ul>
+      <div><b>{props.name}</b></div>
+      <div>
+        {props.value.map((value, i) => <div key={i}>{value}</div>)}
+      </div>
     </div>
   );
 }
