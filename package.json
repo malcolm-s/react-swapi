@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "live-server",
     "watch": "webpack --watch -d --colors --progress",
+    "dev": "npm run watch & npm run serve",
     "build": "webpack -p"
   },
   "keywords": [],
