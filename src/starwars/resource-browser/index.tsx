@@ -5,7 +5,7 @@ interface ResourceContainer {
   resources: SwapiResource[];
 }
 
-class ResourceBrowserContainer extends React.Component<any, ResourceContainer> {
+export class ResourceBrowserContainer extends React.Component<any, ResourceContainer> {
   constructor(props) {
     super(props);
 

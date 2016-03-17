@@ -4,13 +4,17 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {getRouteComponent,routes} from "./routes";
 import {AppNavigation} from "./app-navigation";
+import {ResourceBrowserContainer} from "./starwars/resource-browser";
 
 function App() {
   return (
     <div>
       <h1>Star Wars</h1>
-      <AppNavigation routes={routes} />
-      {getRouteComponent()}
+      <ResourceBrowserContainer />
+      {/*
+        <AppNavigation routes={routes} />
+        {getRouteComponent()}
+      */}
     </div>
   );
 }
