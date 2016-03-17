@@ -35,7 +35,6 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
 
     return fetchResource(url)
       .then(res => {
-        console.log(res)
         this.setState({
           loading: false,
           lastResponse: res,
