@@ -51,7 +51,8 @@ function ResourceBrowserRouter(props: ResourceContainer) {
 }
 
 interface ResourceBrowserListContainerState {
-  schema: Schema
+  schema: Schema;
+  loading: boolean;
 }
 
 class ResourceBrowserListContainer extends React.Component<any, ResourceBrowserListContainerState> {
@@ -59,22 +60,36 @@ class ResourceBrowserListContainer extends React.Component<any, ResourceBrowserL
     super(props);
 
     this.state = {
-      schema: {}
+      schema: {},
+      loading: true
     };
   }
 
   componentWillMount() {
     // get schema
-    fetchSchema(this.props.url).then(console.log.bind(console));
+    fetchSchema(this.props.resource.url).then(schema => {
+      console.log(schema);
+      this.setState({ schema, loading: false });
+    });
   }
 
   render() {
     return (
       <div>
-        {this.props.name} - {this.props.url}
+        {this.props.resource.name} - {this.props.resource.url}
         <br/>
-        {JSON.stringify(this.state.schema)}
+        {this.state.loading
+          ? <span>Loading...</span>
+          : <ResourceBrowserList resource={this.props.resource} schema={this.state.schema} />}
       </div>
     );
   }
+}
+
+function ResourceBrowserList(props) {
+  return (
+    <div>
+      {JSON.stringify(props.schema)}
+    </div>
+  );
 }
