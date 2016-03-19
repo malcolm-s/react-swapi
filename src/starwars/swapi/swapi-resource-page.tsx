@@ -1,7 +1,7 @@
 import * as React from "react";
 import {SwapiListResponse} from "./swapi-list-response";
 import {UrlPager} from "../url-pager";
-import {PropertyViewer} from "../property-viewer";
+import {PropertyViewer,SchemaPropertyViewer} from "../property-viewer";
 import {fetchResource} from "./swapi-service";
 import {SwapiResource} from "./swapi-resource";
 
@@ -69,12 +69,18 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
   renderResults() {
     return (
       <div>
-        {this.state.lastResponse.results.map((result, i) => <PropertyViewer key={i} {...result} />)}
+        {this.state.lastResponse.results.map((result, i) =>
+          <SchemaPropertyViewer key={i} schema={this.props.schema} {...result} />)}
       </div>
     );
   }
 
   renderHeader() {
-    return <h2>{this.props.name} {this.state.count ? `(${this.state.count})` : ""}</h2>;
+    return (
+      <div>
+        <h2>{this.props.name} {this.state.count ? `(${this.state.count})` : ""}</h2>
+        <h3>{this.props.schema.description}</h3>
+      </div>
+    );
   }
 }

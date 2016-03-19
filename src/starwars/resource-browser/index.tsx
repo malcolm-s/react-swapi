@@ -2,6 +2,7 @@ import * as React from 'react';
 import {fetchResources, fetchSchema} from "../swapi/swapi-service";
 import {SwapiResource} from "../swapi/swapi-resource";
 import {SwapiResourceSchema} from "../swapi/swapi-resource-schema";
+import {SwapiResourcePage} from "../swapi/swapi-resource-page";
 
 interface ResourceContainer {
   resources: SwapiResource[];
@@ -29,7 +30,7 @@ function ResourceBrowser(props: ResourceContainer) {
   return (
     <div>
       <ul>
-        {props.resources.map(resource => <li><ResourceBrowserLink {...resource} /></li>)}
+        {props.resources.map((resource, i) => <li key={i}><ResourceBrowserLink {...resource} /></li>)}
       </ul>
       <ResourceBrowserRouter {...props} />
     </div>
@@ -47,7 +48,7 @@ function matchesHash(resource: SwapiResource) {
 function ResourceBrowserRouter(props: ResourceContainer) {
   return (
     <div>
-      {props.resources.filter(matchesHash).map(resource => <ResourceBrowserListContainer resource={resource} /> )}
+      {props.resources.filter(matchesHash).map((resource, i) => <ResourceBrowserListContainer key={i} resource={resource} /> )}
     </div>
   );
 }
@@ -87,20 +88,10 @@ class ResourceBrowserListContainer extends React.Component<any, ResourceBrowserL
   render() {
     return (
       <div>
-        {this.props.resource.name} - {this.props.resource.url}
-        <br/>
         {this.state.loading
           ? <span>Loading...</span>
-          : <ResourceBrowserList resource={this.props.resource} schema={this.state.schema} />}
+          : <SwapiResourcePage {...this.props.resource} schema={this.state.schema} />}
       </div>
     );
   }
-}
-
-function ResourceBrowserList(props) {
-  return (
-    <div>
-      {JSON.stringify(props.schema)}
-    </div>
-  );
 }
