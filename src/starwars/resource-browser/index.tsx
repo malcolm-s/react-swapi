@@ -80,7 +80,6 @@ class ResourceBrowserListContainer extends React.Component<any, ResourceBrowserL
 
   updateSchemaState(url: string) {
     fetchSchema(url).then(schema => {
-      console.log(schema);
       this.setState({ schema, loading: false });
     });
   }

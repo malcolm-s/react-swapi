@@ -26,6 +26,11 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
     this.fetchResults(this.props.url);
   }
 
+  componentWillReceiveProps(props) {
+    if (props.url !== this.props.url)
+      this.fetchResults(props.url);
+  }
+
   fetchResults(url: string) {
     if (!url) {
       return;
@@ -45,12 +50,7 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
 
   render() {
     if (this.state.loading || !this.state.lastResponse) {
-      return (
-        <div>
-          {this.renderHeader()}
-          <div>Loading...</div>
-        </div>
-      );
+      return <div>Loading...</div>;
     } else {
       return (
         <div>
