@@ -66,8 +66,17 @@ class ResourceBrowserListContainer extends React.Component<any, ResourceBrowserL
   }
 
   componentWillMount() {
-    // get schema
-    fetchSchema(this.props.resource.url).then(schema => {
+    this.updateSchemaState(this.props.resource.url);
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.resource.url != this.props.resource.url) {
+      this.updateSchemaState(props.resource.url);
+    }
+  }
+
+  updateSchemaState(url: string) {
+    fetchSchema(url).then(schema => {
       console.log(schema);
       this.setState({ schema, loading: false });
     });
