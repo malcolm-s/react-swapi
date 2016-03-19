@@ -1,10 +1,6 @@
 import {SwapiListResponse} from "./swapi-list-response";
-import {Planet} from "../planets/planet";
-import {Person} from "../people/person";
-import {Starship} from "../starships/starship";
-import {Species} from "../species/species";
-import {Vehicle} from "../vehicles/vehicle";
-import {Film} from "../films/film";
+import {SwapiResource} from "./swapi-resource";
+import {SwapiResourceSchema} from "./swapi-resource-schema";
 
 declare function fetch(url: string): any;
 
@@ -20,21 +16,6 @@ interface SwapiResourceDefinitions {
   [name: string]: string;
 }
 
-export interface SwapiResource {
-  name: string;
-  url: string;
-  schema?: Schema;
-}
-
-export interface Schema {
-  description?: string;
-  properties?: {};
-}
-
-interface SchemaPropertyDefinition {
-  [property: string]: string;
-}
-
 export function fetchResources(): PromiseLike<SwapiResource[]> {
   return fetchJson<SwapiResourceDefinitions>('http://swapi.co/api/')
     .then(resources =>
@@ -43,6 +24,6 @@ export function fetchResources(): PromiseLike<SwapiResource[]> {
       }));
 }
 
-export function fetchSchema(url: string): PromiseLike<Schema> {
-  return  fetchJson<Schema>(`${url}schema`);
+export function fetchSchema(url: string): PromiseLike<SwapiResourceSchema> {
+  return  fetchJson<SwapiResourceSchema>(`${url}schema`);
 }

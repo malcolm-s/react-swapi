@@ -4,7 +4,7 @@ import {SwapiResource} from "../swapi/swapi-resource";
 
 const peopleResource: SwapiResource = {
   name: "People",
-  listUrl: "http://swapi.co/api/people"
+  url: "http://swapi.co/api/people"
 };
 
 export function PeoplePage() {

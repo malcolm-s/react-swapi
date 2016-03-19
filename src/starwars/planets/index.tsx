@@ -4,7 +4,7 @@ import {SwapiResource} from "../swapi/swapi-resource";
 
 const planetsResource: SwapiResource = {
   name: "Planets",
-  listUrl: "http://swapi.co/api/planets"
+  url: "http://swapi.co/api/planets"
 };
 
 export function PlanetsPage() {

@@ -23,7 +23,7 @@ export class SwapiResourcePage extends React.Component<SwapiResourcePageProps, S
   }
 
   componentWillMount() {
-    this.fetchResults(this.props.listUrl);
+    this.fetchResults(this.props.url);
   }
 
   fetchResults(url: string) {

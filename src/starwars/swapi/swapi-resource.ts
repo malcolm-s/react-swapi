@@ -1,4 +1,7 @@
+import {SwapiResourceSchema} from "./swapi-resource-schema";
+
 export interface SwapiResource {
   name: string;
-  listUrl: string;
+  url: string;
+  schema?: SwapiResourceSchema;
 }

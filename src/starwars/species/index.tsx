@@ -4,7 +4,7 @@ import {SwapiResource} from "../swapi/swapi-resource";
 
 const speciesResource: SwapiResource = {
   name: "Species",
-  listUrl: "http://swapi.co/api/species"
+  url: "http://swapi.co/api/species"
 };
 
 export function SpeciesPage() {

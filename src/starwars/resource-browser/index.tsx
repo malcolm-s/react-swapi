@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {fetchResources, fetchSchema, SwapiResource, Schema} from "../swapi/swapi-service";
+import {fetchResources, fetchSchema} from "../swapi/swapi-service";
+import {SwapiResource} from "../swapi/swapi-resource";
+import {SwapiResourceSchema} from "../swapi/swapi-resource-schema";
 
 interface ResourceContainer {
   resources: SwapiResource[];
@@ -51,7 +53,7 @@ function ResourceBrowserRouter(props: ResourceContainer) {
 }
 
 interface ResourceBrowserListContainerState {
-  schema: Schema;
+  schema: SwapiResourceSchema;
   loading: boolean;
 }
 

@@ -4,7 +4,7 @@ import {SwapiResource} from "../swapi/swapi-resource";
 
 const starshipsResource: SwapiResource = {
   name: "Starships",
-  listUrl: "http://swapi.co/api/starships"
+  url: "http://swapi.co/api/starships"
 };
 
 export function StarshipsPage() {
