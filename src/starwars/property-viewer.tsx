@@ -5,15 +5,17 @@ interface SchemaPropertyViewerProps {
   schema?: SwapiResourceSchema;
 }
 
-export function SchemaPropertyViewer(props: SchemaPropertyViewerProps) {
+export function SwapiObjectView(props: SchemaPropertyViewerProps) {
+  const displayProperties = Object.keys(props)
+    .filter(prop => prop !== "schema");
+
   return (
     <div>
       <h3>{props["name"]}</h3>
       <div>
-        {Object.keys(props)
-          .filter(prop => prop !== "schema")
+        {displayProperties
           .map((prop, i) => {
-          return <PropertyValueViewer
+          return <PropertyView
             key={i}
             name={prop}
             value={props[prop]}
@@ -24,46 +26,35 @@ export function SchemaPropertyViewer(props: SchemaPropertyViewerProps) {
   )
 }
 
-export function PropertyViewer(props) {
-  return (
-    <div>
-      <h3>{props["name"]}</h3>
-      <div>
-        {Object.keys(props).map((prop, i) => <div key={i}><PropertyValueViewer name={prop} value={props[prop]} /></div>)}
-      </div>
-    </div>
-  )
-}
-
-function PropertyValueViewer(props) {
-  if (props.value instanceof Array) {
-    return <ArrayPropertyViewer {...props} />;
-  } else {
-    return <LiteralPropertyViewer {...props} />;
-  }
-}
-
-function LiteralPropertyViewer(props) {
+function PropertyView(props) {
   return (
     <div>
       <div>
-        <b>{props.name}</b>&nbsp;<em>{props.definition ? `(${props.definition.description})` : ""}</em>
+        <PropertyTitle name={props.name} definition={props.definition} />
       </div>
-      <div>{props.value}</div>
+      <div>
+        <PropertyValue value={props.value} />
+      </div>
     </div>
   );
 }
 
-function ArrayPropertyViewer(props) {
+function PropertyTitle(props) {
   return (
-    <div>
-      <div>
-        <b>{props.name}</b>
-        <em>{props.description}</em>
-      </div>
-      <div>
-        {props.value.map((value, i) => <div key={i}>{value}</div>)}
-      </div>
-    </div>
+    <span>
+      <b>{props.name}</b>&nbsp;<em>{props.definition ? `(${props.definition.description})` : ""}</em>
+    </span>
+  )
+}
+
+function PropertyValue(props) {
+  const isArray = props.value instanceof Array;
+
+  return (
+    <span>
+      {isArray
+        ? props.value.map((value, i) => <div key={i}>{value}</div>)
+        : props.value}
+    </span>
   );
 }
