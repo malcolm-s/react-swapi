@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {getRouteComponent,routes} from "./routes";
-import {AppNavigation} from "./app-navigation";
 import {ResourceBrowserContainer} from "./starwars/resource-browser";
 
 function App() {
@@ -11,10 +9,6 @@ function App() {
     <div>
       <h1>Star Wars</h1>
       <ResourceBrowserContainer />
-      {/*
-        <AppNavigation routes={routes} />
-        {getRouteComponent()}
-      */}
     </div>
   );
 }
