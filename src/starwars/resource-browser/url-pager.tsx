@@ -8,6 +8,9 @@ interface UrlPagerProps {
 }
 
 export function UrlPager(props: UrlPagerProps) {
+  if (!props.canGoNext() && !props.canGoPrevious())
+    return <div></div>;
+
   return (
     <div>
       <button onClick={props.onPreviousClick} disabled={!props.canGoPrevious()}>previous</button>
