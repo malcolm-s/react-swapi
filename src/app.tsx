@@ -20,4 +20,11 @@ function renderApp() {
 }
 
 window.addEventListener("load", renderApp);
-window.addEventListener("popstate", renderApp);
+window.addEventListener("hashchange", renderApp);
+
+/*
+load
+  resources
+    schema
+      list
+*/
