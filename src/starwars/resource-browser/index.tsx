@@ -22,19 +22,21 @@ export class ResourceBrowserContainer extends React.Component<any, ResourceConta
   }
 
   render() {
-    return <ResourceBrowser {...this.state} />;
-  }
-}
+    const matchingResources = this.state.resources.filter(matchesHash);
 
-function ResourceBrowser(props: ResourceContainer) {
-  return (
-    <div>
-      <ul>
-        {props.resources.map((resource, i) => <li key={i}><ResourceBrowserLink {...resource} /></li>)}
-      </ul>
-      <ResourceBrowserRouter {...props} />
-    </div>
-  );
+    return (
+      <div>
+        <ul>
+        {this.state.resources.map((resource, i) =>
+          <li key={i}><ResourceBrowserLink {...resource} /></li>)}
+        </ul>
+        <div>
+        {matchingResources.map((resource, i) =>
+          <ResourceList key={i} resource={resource} /> )}
+        </div>
+      </div>
+    );
+  }
 }
 
 function ResourceBrowserLink(props: SwapiResource) {
@@ -45,20 +47,12 @@ function matchesHash(resource: SwapiResource) {
   return window.location.hash.indexOf(resource.name) > -1;
 }
 
-function ResourceBrowserRouter(props: ResourceContainer) {
-  return (
-    <div>
-      {props.resources.filter(matchesHash).map((resource, i) => <ResourceBrowserListContainer key={i} resource={resource} /> )}
-    </div>
-  );
-}
-
-interface ResourceBrowserListContainerState {
+interface SchemaLoader {
   schema: SwapiResourceSchema;
   loading: boolean;
 }
 
-class ResourceBrowserListContainer extends React.Component<any, ResourceBrowserListContainerState> {
+class ResourceList extends React.Component<any, SchemaLoader> {
   constructor(props) {
     super(props);
 
