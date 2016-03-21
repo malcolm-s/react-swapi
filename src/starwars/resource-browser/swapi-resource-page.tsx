@@ -1,9 +1,9 @@
 import * as React from "react";
-import {SwapiListResponse} from "./swapi-list-response";
-import {UrlPager} from "../url-pager";
-import {SwapiObjectView} from "../property-viewer";
-import {fetchResource} from "./swapi-service";
-import {SwapiResource} from "./swapi-resource";
+import {SwapiListResponse} from "../swapi/swapi-list-response";
+import {SwapiResource} from "../swapi/swapi-resource";
+import {fetchResource} from "../swapi/swapi-service";
+import {UrlPager} from "./url-pager";
+import {SwapiObjectView} from "./property-viewer";
 
 interface SwapiResourcePageState {
   loading: boolean;

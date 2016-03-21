@@ -2,7 +2,7 @@ import * as React from 'react';
 import {fetchResources, fetchSchema} from "../swapi/swapi-service";
 import {SwapiResource} from "../swapi/swapi-resource";
 import {SwapiResourceSchema} from "../swapi/swapi-resource-schema";
-import {SwapiResourcePage} from "../swapi/swapi-resource-page";
+import {SwapiResourcePage} from "./swapi-resource-page";
 
 interface ResourceContainer {
   resources: SwapiResource[];
