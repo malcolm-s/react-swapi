@@ -1,0 +1,8 @@
+{
+  "name": "react-swapi",
+  "version": false,
+  "ambientDependencies": {
+    "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#ba257a9b91bc0de1bdd9091b6723194c905a902a",
+    "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#ba257a9b91bc0de1bdd9091b6723194c905a902a"
+  }
+}
