@@ -1,5 +1,5 @@
 import * as React from "react";
-import {SwapiResourceSchema} from "../swapi/swapi-resource-schema";
+import {SwapiResourceSchema} from "../data/swapi/swapi-resource-schema";
 
 interface SchemaPropertyViewerProps {
   schema?: SwapiResourceSchema;

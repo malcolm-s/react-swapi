@@ -1,7 +1,7 @@
 import * as React from "react";
-import {SwapiListResponse} from "../swapi/swapi-list-response";
-import {SwapiResource} from "../swapi/swapi-resource";
-import {fetchResource} from "../swapi/swapi-service";
+import {SwapiListResponse} from "../data/swapi/swapi-list-response";
+import {SwapiResource} from "../data/swapi/swapi-resource";
+import {fetchResource} from "../data/swapi/swapi-service";
 import {UrlPager} from "./url-pager";
 import {SwapiObjectView} from "./property-viewer";
 

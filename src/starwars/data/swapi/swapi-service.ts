@@ -2,7 +2,8 @@ import {SwapiListResponse} from "./swapi-list-response";
 import {SwapiResourceDefinitions} from "./swapi-resource-definitions";
 import {SwapiResource} from "./swapi-resource";
 import {SwapiResourceSchema} from "./swapi-resource-schema";
-import {Cache, Duration} from "./local-storage-cache";
+import {Cache} from "../cache";
+import {Duration} from "../duration";
 
 declare function fetch(url: string): any;
 declare var Promise: any;
