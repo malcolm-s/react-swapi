@@ -1,4 +1,4 @@
-/// <reference path="../typings/tsd.d.ts"/>
+/// <reference path="../typings/main.d.ts"/>
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -19,12 +19,6 @@ function renderApp() {
   ReactDOM.render(<App />, container);
 }
 
+window.addEventListener("load", () => localStorage.clear());
 window.addEventListener("load", renderApp);
 window.addEventListener("hashchange", renderApp);
-
-/*
-load
-  resources
-    schema
-      list
-*/
