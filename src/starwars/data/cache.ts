@@ -20,9 +20,6 @@ export class Cache {
 
     const hasExpired = new Date() > new Date(<string>cacheEntry.expires);
 
-    if (hasExpired)
-      console.log('cache expired', key);
-
     return !hasExpired;
   }
 

@@ -19,6 +19,5 @@ function renderApp() {
   ReactDOM.render(<App />, container);
 }
 
-window.addEventListener("load", () => localStorage.clear());
 window.addEventListener("load", renderApp);
 window.addEventListener("hashchange", renderApp);

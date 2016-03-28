@@ -9,19 +9,17 @@ declare function fetch(url: string): any;
 declare var Promise: any;
 
 const cache = new Cache({
-  maxAge: new Duration({ minutes: 1 })
+  maxAge: new Duration({ days: 1 })
 });
 
 function fetchJson<T>(url: string): PromiseLike<T> {
   if (cache.has(url)) {
-    console.log('got cached data for url', url)
     return Promise.resolve(cache.get(url));
   }
 
   return fetch(url)
     .then(res => res.json())
     .then(data => {
-      console.log('fetched data for url', url)
       cache.set(url, data);
       return data;
     });
