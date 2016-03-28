@@ -12,7 +12,7 @@ const cache = new Cache({
   maxAge: new Duration({ days: 1 })
 });
 
-function fetchJson<T>(url: string): PromiseLike<T> {
+export function fetchJson<T>(url: string): PromiseLike<T> {
   if (cache.has(url)) {
     return Promise.resolve(cache.get(url));
   }
